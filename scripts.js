@@ -3,7 +3,7 @@ let USD = 4.87;
 let EUR = 5.32;
 let GBP = 6.08;
 
-// Função para buscar cotações atualizadas
+// Função para buscar cotações atualizadas (API de graça)
 async function fetchExchangeRates() {
   try {
     const response = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,GBP-BRL');
@@ -20,7 +20,7 @@ async function fetchExchangeRates() {
   }
 }
 
-// Busca as cotações quando a página carrega
+// Busca as cotações quando a página carregar
 fetchExchangeRates();
 
 // Obtendo os elementos do formulário.
@@ -65,14 +65,12 @@ function convertCurrency(amount, price, symbol) {
     if (isNaN(total)) {
       return alert("Por favor, insira um valor válido.");
     }
-    /* Poderia também apenas usar o replace substituindo o ponto por virgula */
     total = `${formatCurrencyBRL(total).replace("R$", "")}`;
     result.textContent = `${total} Reais`;
 
     // Aplica a classe que exibe o footer para mostrar o resultado.
     footer.classList.add("show-result");
   } catch (error) {
-    // Remove a classe do footer removendo ele da tela.
     footer.classList.remove("show-result");
 
     console.log(error);
@@ -81,7 +79,7 @@ function convertCurrency(amount, price, symbol) {
 }
 
 function formatCurrencyBRL(value) {
-  // Converte o valor para o formato de moeda brasileira.
+  // Converte o valor para o formato de moeda BR.
   return Number(value).toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",

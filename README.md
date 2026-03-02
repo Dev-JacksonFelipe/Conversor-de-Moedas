@@ -40,7 +40,7 @@ Aplicação web para conversão de moedas estrangeiras para Real Brasileiro (BRL
 ## 🎨 Preview
 
 <div align="center">
-  <img src="./img/preview.png" alt="Preview do Conversor" width="600"/>
+  <img src="./img/previa.png" alt="Preview do Conversor" width="600"/>
 </div>
 
 ---
@@ -63,11 +63,30 @@ cd Conversor-de-Moedas
 
 ## 📡 API Utilizada
 
-Este projeto utiliza a [AwesomeAPI](https://docs.awesomeapi.com.br/api-de-moedas) para obter cotações em tempo real:
+Este projeto utiliza a [AwesomeAPI](https://docs.awesomeapi.com.br/api-de-moedas) para obter cotações em tempo real.
+
+### Como funciona a atualização automática:
+
+Quando a página é carregada, o JavaScript faz uma requisição para a API:
 
 ```javascript
-https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,GBP-BRL
+async function fetchExchangeRates() {
+  const response = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,GBP-BRL');
+  const data = await response.json();
+  
+  // Atualiza os valores automaticamente
+  USD = parseFloat(data.USDBRL.bid);
+  EUR = parseFloat(data.EURBRL.bid);
+  GBP = parseFloat(data.GBPBRL.bid);
+}
 ```
+
+A API retorna as cotações atualizadas de:
+- **USD-BRL** (Dólar → Real)
+- **EUR-BRL** (Euro → Real)
+- **GBP-BRL** (Libra → Real)
+
+Os valores são atualizados automaticamente toda vez que você recarrega a página!
 
 ---
 
@@ -80,7 +99,8 @@ Conversor-de-Moedas/
 │   ├── bg.png
 │   ├── check.svg
 │   ├── chevron-down.svg
-│   └── logo.svg
+│   ├── logo.svg
+│   └── previa.png
 │
 ├── index.html
 ├── scripts.js
@@ -122,8 +142,6 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 👨‍💻 Desenvolvedor
 
-<div align="center">
-  <img src="https://github.com/Dev-JacksonFelipe.png" width="100" style="border-radius: 50%"/>
   
   **Jackson Felipe**
   
@@ -134,5 +152,5 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 ---
 
 <div align="center">
-  Feito com ❤️ por Jackson Felipe
+  Feito por Jackson Felipe
 </div>
