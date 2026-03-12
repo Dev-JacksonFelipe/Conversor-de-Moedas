@@ -23,10 +23,14 @@
 
 body {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 
+  background-color: #0a0b1e;
   background-image: url("./img/bg.png");
-  background-size: contain;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 
   display: flex;
   align-items: center;
@@ -185,10 +189,6 @@ footer h1 {
   body {
     gap: 2rem;
     padding: 1rem;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh;
   }
 
   body > img {
