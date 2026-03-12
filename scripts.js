@@ -2,18 +2,30 @@
 let USD = 4.87;
 let EUR = 5.32;
 let GBP = 6.08;
+let ARS = 0.0052;
+let CAD = 3.65;
+let AUD = 3.25;
+let JPY = 0.034;
+let CNY = 0.71;
+let BTC = 250000;
 
 // Função para buscar cotações atualizadas (API de graça)
 async function fetchExchangeRates() {
   try {
-    const response = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,GBP-BRL');
+    const response = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,GBP-BRL,ARS-BRL,CAD-BRL,AUD-BRL,JPY-BRL,CNY-BRL,BTC-BRL');
     const data = await response.json();
     
     USD = parseFloat(data.USDBRL.bid);
     EUR = parseFloat(data.EURBRL.bid);
     GBP = parseFloat(data.GBPBRL.bid);
+    ARS = parseFloat(data.ARSBRL.bid);
+    CAD = parseFloat(data.CADBRL.bid);
+    AUD = parseFloat(data.AUDBRL.bid);
+    JPY = parseFloat(data.JPYBRL.bid);
+    CNY = parseFloat(data.CNYBRL.bid);
+    BTC = parseFloat(data.BTCBRL.bid);
     
-    console.log('Cotações atualizadas:', { USD, EUR, GBP });
+    console.log('Cotações atualizadas:', { USD, EUR, GBP, ARS, CAD, AUD, JPY, CNY, BTC });
   } catch (error) {
     console.error('Erro ao buscar cotações:', error);
     alert('Não foi possível atualizar as cotações. Usando valores padrão.');
@@ -49,6 +61,24 @@ form.onsubmit = (event) => {
       break;
     case "GBP":
       convertCurrency(amount.value, GBP, "£");
+      break;
+    case "ARS":
+      convertCurrency(amount.value, ARS, "ARS$");
+      break;
+    case "CAD":
+      convertCurrency(amount.value, CAD, "C$");
+      break;
+    case "AUD":
+      convertCurrency(amount.value, AUD, "A$");
+      break;
+    case "JPY":
+      convertCurrency(amount.value, JPY, "¥");
+      break;
+    case "CNY":
+      convertCurrency(amount.value, CNY, "¥");
+      break;
+    case "BTC":
+      convertCurrency(amount.value, BTC, "₿");
       break;
   }
 };
