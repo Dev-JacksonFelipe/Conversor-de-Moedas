@@ -186,6 +186,9 @@ footer h1 {
     gap: 2rem;
     padding: 1rem;
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
   }
 
   body > img {
