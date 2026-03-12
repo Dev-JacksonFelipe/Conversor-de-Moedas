@@ -21,9 +21,6 @@
 
     <main>
       <form>
-        <label for="amount">valor</label>
-        <input type="text" name="amount" id="amount" placeholder="0" required />
-
         <label for="currency">moeda</label>
         <select name="currency" id="currency" required>
           <option value="" disabled selected hidden>Selecione a moeda</option>
@@ -36,7 +33,12 @@
           <option value="JPY">🇯🇵 Iene Japonês</option>
           <option value="CNY">🇨🇳 Yuan Chinês</option>
           <option value="BTC">₿ Bitcoin</option>
+          <option value="ETH">Ξ Ethereum</option>
+          <option value="PYG">🇵🇾 Guarani Paraguaio</option>
         </select>
+
+        <label for="amount">valor</label>
+        <input type="text" name="amount" id="amount" placeholder="0" required />
 
         <button type="submit">Converter em reais</button>
       </form>

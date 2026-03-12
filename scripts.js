@@ -8,11 +8,13 @@ let AUD = 3.25;
 let JPY = 0.034;
 let CNY = 0.71;
 let BTC = 250000;
+let ETH = 15000;
+let PYG = 0.00067;
 
 // Função para buscar cotações atualizadas (API de graça)
 async function fetchExchangeRates() {
   try {
-    const response = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,GBP-BRL,ARS-BRL,CAD-BRL,AUD-BRL,JPY-BRL,CNY-BRL,BTC-BRL');
+    const response = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,GBP-BRL,ARS-BRL,CAD-BRL,AUD-BRL,JPY-BRL,CNY-BRL,BTC-BRL,ETH-BRL,PYG-BRL');
     const data = await response.json();
     
     USD = parseFloat(data.USDBRL.bid);
@@ -24,8 +26,10 @@ async function fetchExchangeRates() {
     JPY = parseFloat(data.JPYBRL.bid);
     CNY = parseFloat(data.CNYBRL.bid);
     BTC = parseFloat(data.BTCBRL.bid);
+    ETH = parseFloat(data.ETHBRL.bid);
+    PYG = parseFloat(data.PYGBRL.bid);
     
-    console.log('Cotações atualizadas:', { USD, EUR, GBP, ARS, CAD, AUD, JPY, CNY, BTC });
+    console.log('Cotações atualizadas:', { USD, EUR, GBP, ARS, CAD, AUD, JPY, CNY, BTC, ETH, PYG });
   } catch (error) {
     console.error('Erro ao buscar cotações:', error);
     alert('Não foi possível atualizar as cotações. Usando valores padrão.');
@@ -43,10 +47,21 @@ const footer = document.querySelector("main footer");
 const description = document.getElementById("description");
 const result = document.getElementById("result");
 
-// Manipulando o input amount para receber somente números.
+// Manipulando o input amount para receber somente números e vírgula/ponto.
 amount.addEventListener("input", () => {
-  const hasCharactersRegex = /\D+/g;
-  amount.value = amount.value.replace(hasCharactersRegex, "");
+  // Remove tudo exceto números, vírgula e ponto
+  let value = amount.value.replace(/[^\d.,]/g, "");
+  
+  // Substitui vírgula por ponto (padrão brasileiro)
+  value = value.replace(",", ".");
+  
+  // Garante apenas um ponto decimal
+  const parts = value.split(".");
+  if (parts.length > 2) {
+    value = parts[0] + "." + parts.slice(1).join("");
+  }
+  
+  amount.value = value;
 });
 
 // Captando o evento de submit (enviar) do formulário.
@@ -79,6 +94,12 @@ form.onsubmit = (event) => {
       break;
     case "BTC":
       convertCurrency(amount.value, BTC, "₿");
+      break;
+    case "ETH":
+      convertCurrency(amount.value, ETH, "Ξ");
+      break;
+    case "PYG":
+      convertCurrency(amount.value, PYG, "₲");
       break;
   }
 };

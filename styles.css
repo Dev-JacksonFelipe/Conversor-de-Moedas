@@ -179,3 +179,78 @@ footer h1 {
   color: #4a5dcd;
   text-decoration: underline;
 }
+
+/* Responsividade para Mobile */
+@media (max-width: 768px) {
+  body {
+    gap: 2rem;
+    padding: 1rem;
+    background-size: cover;
+  }
+
+  body > img {
+    width: 150px;
+    height: auto;
+  }
+
+  main {
+    width: 100%;
+    max-width: 480px;
+  }
+
+  form {
+    padding: 2rem 1.5rem;
+  }
+
+  label {
+    font-size: 0.7rem;
+  }
+
+  input,
+  select {
+    padding: 1rem 0.875rem;
+    font-size: 0.9rem;
+  }
+
+  button {
+    height: 3rem;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+  }
+
+  footer {
+    padding: 1.5rem;
+  }
+
+  footer span {
+    font-size: 0.875rem;
+  }
+
+  footer h1 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .developer {
+    font-size: 0.75rem;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    gap: 1.5rem;
+  }
+
+  body > img {
+    width: 120px;
+  }
+
+  form {
+    padding: 1.5rem 1rem;
+  }
+
+  footer h1 {
+    font-size: 1.25rem;
+  }
+}
